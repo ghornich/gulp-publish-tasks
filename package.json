@@ -1,0 +1,26 @@
+{
+  "name": "gulp-publish-tasks",
+  "version": "1.0.0",
+  "description": "Common gulp tasks I use to automate publishing of npm packages.",
+  "main": "gulp-publish-tasks.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ghornich/gulp-publish-tasks.git"
+  },
+  "author": {
+    "name": "Gergely Hornich",
+    "email": "hornichg@gmail.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ghornich/gulp-publish-tasks/issues"
+  },
+  "homepage": "https://github.com/ghornich/gulp-publish-tasks#readme",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "markdown-toc": "^0.12.16"
+  }
+}
