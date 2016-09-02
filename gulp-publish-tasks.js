@@ -30,15 +30,20 @@ exports.updateMarkdownTOC = function (markdownPath) {
 exports.updateSourceVersion = function (sourcePath, newVersion) {
     var source = fs.readFileSync(sourcePath, { encoding: 'utf-8' });
 
+    if (!UPDATE_SOURCE_TAG_REGEX.test(source)) {
+        console.error(`ERROR: version tag not found in file '${sourcePath}'`);
+        return;
+    }
+
     var newSource = source.replace(UPDATE_SOURCE_TAG_REGEX, '$1' + newVersion);
 
     if (source === newSource) {
         //throw new Error('source version change failed: version didn\'t change');
         console.error('WARNING: source version didn\'t change, current: ' + newVersion);
+        return;
     }
-    else {
-    	fs.writeFileSync(sourcePath, newSource, { encoding: 'utf-8' });
-    }
+
+    fs.writeFileSync(sourcePath, newSource, { encoding: 'utf-8' });
 };
 
 
