@@ -19,7 +19,7 @@ exports.browserify = function (sourcePath, destinationPath, options) {
     options = options || {};
     options.minify = options.minify || false;
 
-    var stream = browserify('browser-build.js');
+    var stream = browserify(sourcePath);
 
     if (options.minify) {
         stream = stream.plugin('minifyify', { map: false }); //TODO options.map?
@@ -27,7 +27,7 @@ exports.browserify = function (sourcePath, destinationPath, options) {
 
     return stream.bundle()
     .on('error', handleStreamError)
-    .pipe(fs.createWriteStream('browser/split-retain.js'))
+    .pipe(fs.createWriteStream(destinationPath))
 };
 
 /**
