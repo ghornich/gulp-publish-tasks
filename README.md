@@ -17,6 +17,7 @@ Build a browser-compatible file from an npm package. Uses [Browserify][2].
 | destinationPath | String | destination file path |
 | [options=`{}`] | Object | — |
 | [options.minify=`false`] | Boolean | minify output with `minifyify` |
+| [options.es5compat=`true`] | Boolean | transpile to ES5 with `babelify` |
 
 ### updateMarkdownTOC
 

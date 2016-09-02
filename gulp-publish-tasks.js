@@ -14,12 +14,18 @@ var UPDATE_SOURCE_TAG_REGEX = new RegExp(`(${UPDATE_SOURCE_TAG}[\\s\\S]+?['"\`])
  * @param  {String} destinationPath
  * @param  {Object} [options={}]
  * @param  {Boolean} [options.minify=false] - minify build
+ * @param  {Boolean} [options.es5compat=true] - transpile ES6 features to ES5
  */
 exports.browserify = function (sourcePath, destinationPath, options) {
     options = options || {};
     options.minify = options.minify || false;
+    options.es5compat = options.es5compat || true;
 
     var stream = browserify(sourcePath);
+
+    if (options.es5compat) {
+        stream = stream.transform('babelify', { presets: ['es2015'] });
+    }
 
     if (options.minify) {
         stream = stream.plugin('minifyify', { map: false }); //TODO options.map?
