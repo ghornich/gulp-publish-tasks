@@ -8,7 +8,30 @@ var UPDATE_SOURCE_TAG = 'publish-tasks:auto-version';
 var UPDATE_SOURCE_TAG_REGEX = new RegExp(`(${UPDATE_SOURCE_TAG}[\\s\\S]+?['"\`])(\\d+\\.){2}\\d+`, 'g');
 
 /**
- * Updates the table of contents in a markdown file
+ * Create a browser-compatible build of an npm package (using Browserify)
+ *
+ * @param  {String} sourcePath
+ * @param  {String} destinationPath
+ * @param  {Object} [options={}]
+ * @param  {Boolean} [options.minify=false] - minify build
+ */
+exports.browserify = function (sourcePath, destinationPath, options) {
+    options = options || {};
+    options.minify = options.minify || false;
+
+    var stream = browserify('browser-build.js');
+
+    if (options.minify) {
+        stream = stream.plugin('minifyify', { map: false }); //TODO options.map?
+    }
+
+    return stream.bundle()
+    .on('error', handleStreamError)
+    .pipe(fs.createWriteStream('browser/split-retain.js'))
+};
+
+/**
+ * Updates the table of contents in a markdown file (using markdown-toc)
  *
  * @param  {String} markdownPath
  */
@@ -46,12 +69,9 @@ exports.updateSourceVersion = function (sourcePath, newVersion) {
     fs.writeFileSync(sourcePath, newSource, { encoding: 'utf-8' });
 };
 
-
-
-/*exports.handleStreamError = handleStreamError;
+exports.handleStreamError = handleStreamError;
 
 function handleStreamError(error) {
     console.error(error.stack);
     this.emit('end');
-}*/
-
+}

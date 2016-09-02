@@ -1,7 +1,22 @@
 # gulp-publish-tasks
 Common gulp tasks I use to automate publishing of npm packages.
 
+## NOTICE
+
+  **Stability: 2 - UNSTABLE**
+
 ## Tasks
+
+### browserify
+
+Build a browser-compatible file from an npm package. Uses [Browserify][2].
+
+| argument | type | description |
+| :-- | :-- | :-- |
+| sourcePath | String | source js file path
+| destinationPath | String | destination file path
+| [options=`{}`] | Object | — |
+| [options.minify=`false`] | Boolean | minify output with `minifyify` |
 
 ### updateMarkdownTOC
 
@@ -48,3 +63,4 @@ MyLibrary.VERSION = '1.0.0'; // ------ will be replaced with version from packag
 * more tasks
 
 [1]: https://github.com/jonschlinkert/markdown-toc
+[2]: http://browserify.org/

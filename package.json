@@ -20,7 +20,9 @@
   },
   "homepage": "https://github.com/ghornich/gulp-publish-tasks#readme",
   "dependencies": {
+    "browserify": "^13.1.0",
     "gulp": "^3.9.1",
-    "markdown-toc": "^0.12.16"
+    "markdown-toc": "^0.12.16",
+    "minifyify": "^7.3.3"
   }
 }
